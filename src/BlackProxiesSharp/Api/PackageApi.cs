@@ -37,7 +37,7 @@ namespace BlackProxiesSharp.Api
             });
 
         public async Task<List<string>> GetProxiesAsync(string format = "host:port")
-            => await GetResponseAsync<List<string>>(new HttpRequestMessage(HttpMethod.Get, $"proxies?type=json&format={format}"));
+            => await GetResponseAsync<List<string>>(new HttpRequestMessage(HttpMethod.Get, $"proxies?type=json&format={Uri.EscapeDataString(format)}"));
 
         public async Task<PackageModel> PauseAsync()
             => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "pause"));
