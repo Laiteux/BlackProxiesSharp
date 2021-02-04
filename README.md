@@ -6,7 +6,7 @@ The official .NET wrapper for the BlackProxies API.
 
 - `Task<PackageModel> GetAsync()`
 - `Task<PackageModel> StartAsync(IEnumerable<string> ips)`
-- `Task<List<string>> GetProxiesAsync(string format = "host:port")`
+- `Task<IEnumerable<string>> GetProxiesAsync(string format = "host:port")`
 - `Task<PackageModel> PauseAsync()`
 - `Task<PackageModel> ResumeAsync()`
 - `Task<PackageModel> RefreshPoolAsync()`
