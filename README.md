@@ -27,23 +27,3 @@ The above code will retrieve a package proxy list and save it to a `Proxies.txt`
 ### [ResellerApi](https://github.com/Laiteux/BlackProxiesSharp/blob/main/src/BlackProxiesSharp/Api/ResellerApi.cs)
 
 - Coming very soon...
-
-## Contribute
-
-Your help is welcome, feel free to fork this repo and submit a pull request.
-
-However, please make sure to follow the current code base/style.
-
-## Contact
-
-Telegram: [@BlackProxiesSupport](https://t.me/BlackProxiesSupport)
-
-Email: support@proxies.black
-
-## Donate
-
-If you would like to support this project, please consider donating.
-
-Donations are greatly appreciated and a motivation to keep improving.
-
-- Bitcoin: `1LaiteuxHEH4GsMC9aVmnwgUEZyrG6BiTH`
