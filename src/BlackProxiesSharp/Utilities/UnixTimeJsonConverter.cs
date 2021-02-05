@@ -4,7 +4,7 @@ using System.Text.Json.Serialization;
 
 namespace BlackProxiesSharp.Utilities
 {
-    public class UnixTimeJsonConverter : JsonConverter<DateTimeOffset>
+    internal class UnixTimeJsonConverter : JsonConverter<DateTimeOffset>
     {
         public override DateTimeOffset Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
