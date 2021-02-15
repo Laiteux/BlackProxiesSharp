@@ -8,7 +8,7 @@ namespace BlackProxiesSharp.Extensions
     {
         public static async Task<T> DeserializeJsonAsync<T>(this HttpResponseMessage httpResponseMessage, JsonSerializerOptions jsonSerializerOptions = null)
         {
-            var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
+            var responseString = await httpResponseMessage.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             return JsonSerializer.Deserialize<T>(responseString, jsonSerializerOptions);
         }

@@ -27,20 +27,20 @@ namespace BlackProxiesSharp.Api
 
         protected async Task<T> GetResponseAsync<T>(HttpRequestMessage requestMessage)
         {
-            using var responseMessage = await HttpClient.SendAsync(requestMessage);
+            using var responseMessage = await HttpClient.SendAsync(requestMessage).ConfigureAwait(false);
 
             var statusCode = responseMessage.StatusCode;
 
             if (statusCode == HttpStatusCode.InternalServerError)
             {
-                var json = await responseMessage.DeserializeJsonAsync<JsonElement>();
+                var json = await responseMessage.DeserializeJsonAsync<JsonElement>().ConfigureAwait(false);
 
                 throw new Exception(json.GetProperty("error").GetString());
             }
 
             if (statusCode == HttpStatusCode.OK)
             {
-                return await responseMessage.DeserializeJsonAsync<T>(_jsonSerializerOptions);
+                return await responseMessage.DeserializeJsonAsync<T>(_jsonSerializerOptions).ConfigureAwait(false);
             }
 
             if (StatusCodeExceptions != null && StatusCodeExceptions.TryGetValue(statusCode, out Exception ex))

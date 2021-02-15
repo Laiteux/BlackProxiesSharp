@@ -25,7 +25,7 @@ namespace BlackProxiesSharp.Api
         }
 
         public async Task<ResellerModel> GetAsync()
-            => await GetResponseAsync<ResellerModel>(new HttpRequestMessage(HttpMethod.Get, string.Empty));
+            => await GetResponseAsync<ResellerModel>(new HttpRequestMessage(HttpMethod.Get, string.Empty)).ConfigureAwait(false);
 
         /// <returns>Payment URL</returns>
         public async Task<string> RefillBalanceAsync(double amount)
@@ -35,7 +35,7 @@ namespace BlackProxiesSharp.Api
                 {
                     { "amount", amount.ToString("0.00") }
                 })
-            })).GetProperty("url").GetString();
+            }).ConfigureAwait(false)).GetProperty("url").GetString();
 
         /// <returns>Package ID</returns>
         public async Task<string> PurchasePackageAsync(int planId, int additionalTrafficGB = 0)
@@ -46,10 +46,10 @@ namespace BlackProxiesSharp.Api
                     { "planId", planId.ToString() },
                     { "additionalTrafficGB", additionalTrafficGB.ToString() }
                 })
-            })).GetProperty("package").GetString();
+            }).ConfigureAwait(false)).GetProperty("package").GetString();
 
         /// <returns>Package ID</returns>
         public async Task<string> PurchasePackageAsync(PlanModel plan, int additionalTrafficGB = 0)
-            => await PurchasePackageAsync(plan.Id, additionalTrafficGB);
+            => await PurchasePackageAsync(plan.Id, additionalTrafficGB).ConfigureAwait(false);
     }
 }

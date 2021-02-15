@@ -23,30 +23,30 @@ namespace BlackProxiesSharp.Api
         }
 
         public async Task<PackageModel> GetAsync()
-            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Get, string.Empty));
+            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Get, string.Empty)).ConfigureAwait(false);
 
         public async Task<PackageModel> StartAsync(IEnumerable<string> ips)
             => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "start")
             {
                 Content = new JsonContent<IEnumerable<string>>(ips)
-            });
+            }).ConfigureAwait(false);
 
         public async Task<IEnumerable<string>> GetProxiesAsync(string format = "host:port")
-            => await GetResponseAsync<IEnumerable<string>>(new HttpRequestMessage(HttpMethod.Get, $"proxies?type=json&format={Uri.EscapeDataString(format)}"));
+            => await GetResponseAsync<IEnumerable<string>>(new HttpRequestMessage(HttpMethod.Get, $"proxies?type=json&format={Uri.EscapeDataString(format)}")).ConfigureAwait(false);
 
         public async Task<PackageModel> PauseAsync()
-            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "pause"));
+            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "pause")).ConfigureAwait(false);
 
         public async Task<PackageModel> ResumeAsync()
-            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "resume"));
+            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "resume")).ConfigureAwait(false);
 
         public async Task<PackageModel> RefreshPoolAsync()
-            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "refresh"));
+            => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Post, "refresh")).ConfigureAwait(false);
 
         public async Task<PackageModel> UpdateWhitelistedIPsAsync(IEnumerable<string> ips)
             => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Put, "ips")
             {
                 Content = new JsonContent<IEnumerable<string>>(ips)
-            });
+            }).ConfigureAwait(false);
     }
 }
