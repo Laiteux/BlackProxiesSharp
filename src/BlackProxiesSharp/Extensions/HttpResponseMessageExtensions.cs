@@ -6,7 +6,7 @@ namespace BlackProxiesSharp.Extensions
 {
     internal static class HttpResponseMessageExtensions
     {
-        internal static async Task<T> DeserializeJsonAsync<T>(this HttpResponseMessage httpResponseMessage, JsonSerializerOptions jsonSerializerOptions = null)
+        public static async Task<T> DeserializeJsonAsync<T>(this HttpResponseMessage httpResponseMessage, JsonSerializerOptions jsonSerializerOptions = null)
         {
             var responseString = await httpResponseMessage.Content.ReadAsStringAsync();
 

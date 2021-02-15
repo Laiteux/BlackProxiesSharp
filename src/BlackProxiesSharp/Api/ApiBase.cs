@@ -15,6 +15,10 @@ namespace BlackProxiesSharp.Api
 
         protected virtual Dictionary<HttpStatusCode, Exception> StatusCodeExceptions { get; }
 
+        internal ApiBase()
+        {
+        }
+
         private static readonly JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions()
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -27,17 +31,24 @@ namespace BlackProxiesSharp.Api
 
             var statusCode = responseMessage.StatusCode;
 
-            if (statusCode != HttpStatusCode.OK)
+            if (statusCode == HttpStatusCode.InternalServerError)
             {
-                if (StatusCodeExceptions != null && StatusCodeExceptions.TryGetValue(statusCode, out Exception ex))
-                {
-                    throw ex;
-                }
+                var json = await responseMessage.DeserializeJsonAsync<JsonElement>();
 
-                throw new UnhandledStatusCodeException(statusCode);
+                throw new Exception(json.GetProperty("error").GetString());
             }
 
-            return await responseMessage.DeserializeJsonAsync<T>(_jsonSerializerOptions);
+            if (statusCode == HttpStatusCode.OK)
+            {
+                return await responseMessage.DeserializeJsonAsync<T>(_jsonSerializerOptions);
+            }
+
+            if (StatusCodeExceptions != null && StatusCodeExceptions.TryGetValue(statusCode, out Exception ex))
+            {
+                throw ex;
+            }
+
+            throw new UnhandledStatusCodeException(statusCode);
         }
     }
 }

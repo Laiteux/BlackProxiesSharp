@@ -22,11 +22,6 @@ namespace BlackProxiesSharp.Api
             HttpClient.BaseAddress = new Uri($"https://proxies.black/api/package/{id}/");
         }
 
-        public PackageApi(Guid id, HttpClient httpClient = null)
-            : this(id.ToString("D"), httpClient)
-        {
-        }
-
         public async Task<PackageModel> GetAsync()
             => await GetResponseAsync<PackageModel>(new HttpRequestMessage(HttpMethod.Get, string.Empty));
 
