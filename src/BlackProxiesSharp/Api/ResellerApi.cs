@@ -28,8 +28,8 @@ namespace BlackProxiesSharp.Api
             => await GetResponseAsync<ResellerModel>(new HttpRequestMessage(HttpMethod.Get, string.Empty)).ConfigureAwait(false);
 
         /// <returns>Payment URL</returns>
-        public async Task<string> RefillBalanceAsync(double amount)
-            => (await GetResponseAsync<JsonElement>(new HttpRequestMessage(HttpMethod.Post, "refill")
+        public async Task<string> DepositAsync(double amount)
+            => (await GetResponseAsync<JsonElement>(new HttpRequestMessage(HttpMethod.Post, "deposit")
             {
                 Content = new FormUrlEncodedContent(new Dictionary<string, string>()
                 {

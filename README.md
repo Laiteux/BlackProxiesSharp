@@ -27,7 +27,7 @@ The above code will retrieve a package proxy list and save it to a `Proxies.txt`
 ### [ResellerApi](https://github.com/Laiteux/BlackProxiesSharp/blob/main/src/BlackProxiesSharp/Api/ResellerApi.cs)
 
 - `Task<ResellerModel> GetAsync()`
-- `Task<string> RefillBalanceAsync(double amount)`
+- `Task<string> DepositAsync(double amount)`
 - `Task<string> PurchasePackageAsync(int planId, int additionalTrafficGB = 0)`
 - `Task<string> PurchasePackageAsync(PlanModel plan, int additionalTrafficGB = 0)`
 
