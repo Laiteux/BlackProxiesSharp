@@ -15,6 +15,8 @@ namespace BlackProxiesSharp.Models
         [JsonConverter(typeof(UnixTimeJsonConverter))]
         public DateTimeOffset ExpiresAt { get; set; }
 
+        public bool Deactivated { get; set; }
+
         public PackageTrafficModel Traffic { get; set; }
 
         public PackageThreadsModel Threads { get; set; }
@@ -25,7 +27,7 @@ namespace BlackProxiesSharp.Models
 
         public List<string> Proxies { get; set; }
 
-        public bool HasExpired() => DateTimeOffset.Now > ExpiresAt;
+        public bool Expired => DateTimeOffset.Now > ExpiresAt;
     }
 
     public class PackageTrafficModel
